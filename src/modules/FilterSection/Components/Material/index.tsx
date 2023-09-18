@@ -44,7 +44,7 @@ const MaterialCard = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   };
-  
+
   return (
     <div className="filter-container">
       {toggle ? (
