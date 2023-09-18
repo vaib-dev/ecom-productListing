@@ -43,6 +43,7 @@ const PriceCard = () => {
     const priceFilterValues = [leftValue, rightValue];
     setPriceFilter(priceFilterValues)
   };
+  
   return (
     <div className="filter-container">
       {toggle ? (

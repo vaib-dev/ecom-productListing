@@ -23,7 +23,6 @@ const ProductCard = () => {
   useEffect(() => {
     const minPrice = parseInt(priceFilter[0]);
     const maxPrice = parseInt(priceFilter[1]);
-
     const filteredProducts = productList.filter((product: any) => {
       const productPrice = product.price[0];
       return productPrice >= minPrice && productPrice <= maxPrice;
@@ -33,7 +32,7 @@ const ProductCard = () => {
       getAllProducts();
     }
   }, [priceFilter]);
-  console.log(priceFilter);
+
   return (
     <>
       {productList?.map((items: any) => {

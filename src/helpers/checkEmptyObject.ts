@@ -1,8 +1,8 @@
-export function isEmptyObject(obj:any) {
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        return false; // The object is not empty
-      }
+export function isEmptyObject(obj: any) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      return false;
     }
-    return true; // The object is empty
   }
+  return true;
+}

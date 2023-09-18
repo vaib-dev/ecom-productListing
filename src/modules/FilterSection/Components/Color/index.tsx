@@ -18,9 +18,11 @@ const ColorCard = () => {
     );
     if (data?.length > 0) setColorData(data);
   };
+
   useEffect(() => {
     getColorData();
   }, []);
+
   useEffect(() => {
     if (color) {
       setColorValues(color);
@@ -28,6 +30,18 @@ const ColorCard = () => {
       setColorValues([]);
     }
   }, [color?.length]);
+
+  useEffect(() => {
+    setColorFilter(selectedColor);
+  }, [selectedColor]);
+
+  useEffect(() => {
+    const filteredMaterials = selectedColor?.filter((value: any) =>
+      colorFilter?.includes(value)
+    );
+    setSelectedColor(filteredMaterials);
+  }, [colorFilter?.length]);
+
   const handleMaterialSelection = (e: any) => {
     const colorName = e.target.name;
     if (selectedColor.includes(colorName)) {
@@ -36,18 +50,11 @@ const ColorCard = () => {
       setSelectedColor([...selectedColor, colorName]);
     }
   };
-  useEffect(() => {
-    setColorFilter(selectedColor);
-  }, [selectedColor]);
-  useEffect(() => {
-    const filteredMaterials = selectedColor?.filter((value: any) =>
-      colorFilter?.includes(value)
-    );
-    setSelectedColor(filteredMaterials)
-  }, [colorFilter?.length]);
+
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
   return (
     <div className="filter-container">
       {toggle ? (

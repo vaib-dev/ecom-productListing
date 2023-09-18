@@ -1,4 +1,5 @@
 import { useFilterData } from "Context/FilterDataContext";
+
 export const useSeperatedData = () => {
   const filterData = useFilterData();
   const separatedData = filterData.reduce((acc: any, obj: any) => {

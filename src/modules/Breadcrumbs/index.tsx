@@ -28,6 +28,7 @@ const Breadcrumbs = () => {
       setPriceFilter((priceFilter.length = 0));
     }
   };
+
   const renderPriceFilter = () => {
     const minPrice = parseInt(priceFilter[0]);
     const maxPrice = parseInt(priceFilter[1]);
@@ -44,9 +45,11 @@ const Breadcrumbs = () => {
       </div>
     );
   };
+
   return (
     <div className="selected-filter">
       {priceFilter?.length > 0 && <> {renderPriceFilter()}/</>}
+
       {colorFilter?.length > 0 &&
         colorFilter?.map((item: any) => {
           return (
@@ -65,6 +68,7 @@ const Breadcrumbs = () => {
             </>
           );
         })}
+
       {colorFilter?.length > 0 && "/"}
       {materialFilter?.length > 0 &&
         materialFilter?.map((item: any) => {

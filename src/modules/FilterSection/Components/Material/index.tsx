@@ -11,6 +11,7 @@ const MaterialCard = () => {
   const valuesToMap = Array.isArray(materialValues)
     ? materialValues[0]?.values
     : [];
+
   useEffect(() => {
     if (material) {
       setMaterialValues(material);
@@ -18,6 +19,16 @@ const MaterialCard = () => {
       setMaterialValues([]);
     }
   }, [material?.length]);
+
+  useEffect(() => {
+    setMaterialFilter(selectedMaterials);
+  }, [selectedMaterials]);
+  useEffect(() => {
+    const filteredMaterials = selectedMaterials?.filter((value: any) =>
+      materialFilter?.includes(value)
+    );
+    setSelectedMaterials(filteredMaterials);
+  }, [materialFilter?.length]);
 
   const handleMaterialSelection = (e: any) => {
     const materialName = e.target.name;
@@ -29,19 +40,11 @@ const MaterialCard = () => {
       setSelectedMaterials([...selectedMaterials, materialName]);
     }
   };
-  useEffect(() => {
-    setMaterialFilter(selectedMaterials);
-  }, [selectedMaterials]);
-  useEffect(() => {
-    const filteredMaterials = selectedMaterials?.filter((value: any) =>
-      materialFilter?.includes(value)
-    );
-    setSelectedMaterials(filteredMaterials)
-  }, [materialFilter?.length]);
 
   const handleToggle = () => {
     setToggle(!toggle);
   };
+  
   return (
     <div className="filter-container">
       {toggle ? (

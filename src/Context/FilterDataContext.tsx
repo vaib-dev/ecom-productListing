@@ -36,6 +36,7 @@ export const FilterDataProvider: any = ({ children }: any) => {
 
     fetchData();
   }, []);
+
   return (
     <FilterDataContext.Provider value={filterData}>
       {children}
