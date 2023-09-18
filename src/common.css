@@ -147,12 +147,11 @@ body {
     display: flex;
     flex-direction: column;
   }
-  .filters{
+  .filters {
     flex: auto;
   }
-  .header-h1{
+  .header-h1 {
     text-align: center;
-
   }
 }
 
@@ -186,14 +185,14 @@ body {
   letter-spacing: 0em;
   text-align: left;
 }
- .h1{
+.h1 {
   font-weight: 700 !important;
 }
 
 .filters-style {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .color-circle {
@@ -211,10 +210,33 @@ body {
   border-bottom: 1px solid #efefef;
 }
 
+.price-values {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-value-box {
+  border: 1px solid #cccccc;
+  padding: 4px 15px;
+  margin: 8px 0;
+}
+
+.price-filter input[type="range"] {
+  accent-color: #121212;
+}
+
 .price-btn {
   color: #121212;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-inline-start: 20px;
   border: none;
-  background-color: #efefef;
+  background: none;
   padding: 5px;
 }
 
@@ -251,7 +273,7 @@ body {
 
 .round label {
   border-radius: 50%;
-  border: 1px solid #111;
+  /* border: 1px solid #111; */
   cursor: pointer;
   height: 20px;
   left: 0;
@@ -302,7 +324,6 @@ body {
 }
 .round-mt {
   position: relative;
-
 }
 
 .round-mt label {
@@ -314,7 +335,6 @@ body {
   position: absolute;
   top: 0;
   width: 20px;
- 
 }
 
 .round-mt label:after {
@@ -334,14 +354,12 @@ body {
 .round-mt input[type="checkbox"] {
   visibility: hidden;
   margin-right: 12px;
-  
 }
 label:hover {
   border: 1px solid rgb(0, 0, 0);
 }
 .round-mt input[type="checkbox"]:checked + label:after {
   opacity: 1;
-  
 }
 
 .toogle {

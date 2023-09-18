@@ -81,7 +81,15 @@ const ColorCard = () => {
                   />
                   <label
                     htmlFor={checkboxId}
-                    style={{ backgroundColor: `${items?.value}` }}
+                    style={{
+                      backgroundColor: `${items?.value}`,
+                      border: `${
+                        items?.value !== "White" &&
+                        items?.value !== "Multicolor"
+                          ? `1px solid ${items?.value}`
+                          : "1px solid black"
+                      }`,
+                    }}
                   ></label>
 
                   {items.value}

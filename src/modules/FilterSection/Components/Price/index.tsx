@@ -41,7 +41,7 @@ const PriceCard = () => {
   };
   const productWithPrice = () => {
     const priceFilterValues = [leftValue, rightValue];
-    setPriceFilter(priceFilterValues)
+    setPriceFilter(priceFilterValues);
   };
   
   return (
@@ -58,28 +58,30 @@ const PriceCard = () => {
             return (
               <>
                 <div key={items.value} className="price-filter">
-                  Min Price: ${leftValue}
                   <input
                     type="range"
                     name="left"
-                    min={minPrice}
+                    min={0}
                     max={Math.floor(maxPrice / 2)}
-                    step={15}
+                    step={10}
                     className="slider-input"
                     onChange={(e) => handleRangeChange(e)}
                   />
-                  Max Price: ${rightValue}
+
                   <input
                     type="range"
                     name="right"
                     min={251}
-                    step={15}
+                    step={10}
                     max={maxPrice}
                     className="slider-input"
                     onChange={(e) => handleRangeChange(e)}
                   />
                 </div>
-                <div>
+                <div className="price-values">
+                  <span className="price-value-box">$ {leftValue}</span>
+                  <span style={{marginInline:"5px"}}> - </span>
+                  <span className="price-value-box">$ {rightValue}</span>
                   <button className="price-btn" onClick={productWithPrice}>
                     Go
                   </button>
