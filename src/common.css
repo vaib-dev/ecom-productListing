@@ -108,6 +108,7 @@ body {
   text-align: center;
   color: #000;
   margin-top: 10px;
+  text-transform: uppercase;
 }
 
 .image-container,
@@ -152,6 +153,13 @@ body {
   }
   .header-h1 {
     text-align: center;
+  }
+  .breadcrumbs {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 !important;
   }
 }
 
@@ -292,6 +300,7 @@ body {
 }
 .selected-filter {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
