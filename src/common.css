@@ -373,3 +373,19 @@ label:hover {
   display: flex;
   flex-direction: column;
 }
+
+.show-more-less {
+  display: flex;
+  justify-content: center;
+}
+
+.toogle-list {
+  background: none;
+  border: none;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}

@@ -11,6 +11,7 @@ const MaterialCard = () => {
   const valuesToMap = Array.isArray(materialValues)
     ? materialValues[0]?.values
     : [];
+  const [displayCount, setDisplayCount] = useState(6);
 
   useEffect(() => {
     if (material) {
@@ -45,6 +46,14 @@ const MaterialCard = () => {
     setToggle(!toggle);
   };
 
+  const handleShowMore = () => {
+    setDisplayCount(valuesToMap.length);
+  };
+
+  const handleShowLess = () => {
+    setDisplayCount(6);
+  };
+
   return (
     <div className="filter-container">
       {toggle ? (
@@ -55,31 +64,44 @@ const MaterialCard = () => {
               -
             </button>
           </div>
-          {valuesToMap?.map((items: any, index: number) => {
-            const checkboxId = `checkbox-mt-${index}`;
-            return (
-              <div className="filters-style">
-                <div className="material-name round-mt">
-                  <input
-                    type="checkbox"
-                    id={checkboxId}
-                    checked={materialFilter.includes(items.value)}
-                    name={items.value}
-                    onClick={(e) => {
-                      handleMaterialSelection(e);
-                    }}
-                  />
-                  <label
-                    htmlFor={checkboxId}
-                    style={{ backgroundColor: "none" }}
-                  ></label>
+          {valuesToMap
+            .slice(0, displayCount)
+            ?.map((items: any, index: number) => {
+              const checkboxId = `checkbox-mt-${index}`;
+              return (
+                <div className="filters-style">
+                  <div className="material-name round-mt">
+                    <input
+                      type="checkbox"
+                      id={checkboxId}
+                      checked={materialFilter.includes(items.value)}
+                      name={items.value}
+                      onClick={(e) => {
+                        handleMaterialSelection(e);
+                      }}
+                    />
+                    <label
+                      htmlFor={checkboxId}
+                      style={{ backgroundColor: "none" }}
+                    ></label>
 
-                  {items.value}
+                    {items.value}
+                  </div>
+                  <span>({items.count})</span>
                 </div>
-                <span>({items.count})</span>
-              </div>
-            );
-          })}{" "}
+              );
+            })}
+          <div className="show-more-less">
+            {displayCount === valuesToMap?.length ? (
+              <button className="toogle-list" onClick={handleShowLess}>
+                - Less{" "}
+              </button>
+            ) : (
+              <button className="toogle-list" onClick={handleShowMore}>
+                +More
+              </button>
+            )}
+          </div>
         </>
       ) : (
         <>

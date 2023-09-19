@@ -11,6 +11,7 @@ const ColorCard = () => {
   const { colorFilter, setColorFilter }: any = useFilter();
   const [toggle, setToggle] = useState<any>(false);
   const valuesToMap = Array.isArray(colorValues) ? colorValues[0]?.values : [];
+  const [displayCount, setDisplayCount] = useState(6);
 
   const getColorData = async () => {
     const { data } = await axios.get(
@@ -55,6 +56,15 @@ const ColorCard = () => {
     setToggle(!toggle);
   };
 
+  const handleShowMore = () => {
+    setDisplayCount(valuesToMap.length);
+  };
+
+  const handleShowLess = () => {
+    setDisplayCount(6);
+  };
+
+
   return (
     <div className="filter-container">
       {toggle ? (
@@ -65,7 +75,7 @@ const ColorCard = () => {
               -
             </button>
           </div>
-          {valuesToMap?.map((items: any, index: any) => {
+          {valuesToMap.slice(0, displayCount)?.map((items: any, index: any) => {
             const checkboxId = `checkbox-${index}`;
             return (
               <div className="filters-style">
@@ -98,6 +108,17 @@ const ColorCard = () => {
               </div>
             );
           })}
+          <div className="show-more-less">
+            {displayCount === valuesToMap?.length ? (
+              <button className="toogle-list" onClick={handleShowLess}>
+                - Less{" "}
+              </button>
+            ) : (
+              <button className="toogle-list" onClick={handleShowMore}>
+                +More
+              </button>
+            )}
+          </div>
         </>
       ) : (
         <div className="filter-text">
