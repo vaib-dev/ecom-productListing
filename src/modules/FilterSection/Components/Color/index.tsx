@@ -6,23 +6,11 @@ import { useFilter } from "Context/SelectedFilterContext";
 const ColorCard = () => {
   const { color } = useSeperatedData();
   const [colorValues, setColorValues] = useState<any>([]);
-  const [colorData, setColorData] = useState<any>([]);
   const [selectedColor, setSelectedColor] = useState<any>([]);
   const { colorFilter, setColorFilter }: any = useFilter();
   const [toggle, setToggle] = useState<any>(false);
   const valuesToMap = Array.isArray(colorValues) ? colorValues[0]?.values : [];
   const [displayCount, setDisplayCount] = useState(6);
-
-  const getColorData = async () => {
-    const { data } = await axios.get(
-      "https://findify-assets.s3.amazonaws.com/test-task/test_color_mapping.json"
-    );
-    if (data?.length > 0) setColorData(data);
-  };
-
-  useEffect(() => {
-    getColorData();
-  }, []);
 
   useEffect(() => {
     if (color) {

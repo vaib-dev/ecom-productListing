@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSeperatedData } from "hooks/seperateFilterData";
 import { useFilter } from "Context/SelectedFilterContext";
 
-const MaterialCard = () => {
-  const { material } = useSeperatedData();
+const MaterialCard = ({ data }: any) => {
   const [materialValues, setMaterialValues] = useState<any>([]);
   const [selectedMaterials, setSelectedMaterials] = useState<any>([]);
   const { materialFilter, setMaterialFilter }: any = useFilter();
@@ -14,16 +13,17 @@ const MaterialCard = () => {
   const [displayCount, setDisplayCount] = useState(6);
 
   useEffect(() => {
-    if (material) {
-      setMaterialValues(material);
+    if (data) {
+      setMaterialValues(data);
     } else {
       setMaterialValues([]);
     }
-  }, [material?.length]);
+  }, [data?.length]);
 
   useEffect(() => {
     setMaterialFilter(selectedMaterials);
   }, [selectedMaterials]);
+
   useEffect(() => {
     const filteredMaterials = selectedMaterials?.filter((value: any) =>
       materialFilter?.includes(value)
@@ -33,9 +33,9 @@ const MaterialCard = () => {
 
   const handleMaterialSelection = (e: any) => {
     const materialName = e.target.name;
-    if (selectedMaterials.includes(materialName)) {
+    if (selectedMaterials?.includes(materialName)) {
       setSelectedMaterials(
-        selectedMaterials.filter((item: any) => item !== materialName)
+        selectedMaterials?.filter((item: any) => item !== materialName)
       );
     } else {
       setSelectedMaterials([...selectedMaterials, materialName]);
@@ -65,12 +65,12 @@ const MaterialCard = () => {
             </button>
           </div>
           {valuesToMap
-            .slice(0, displayCount)
+            ?.slice(0, displayCount)
             ?.map((items: any, index: number) => {
               const checkboxId = `checkbox-mt-${index}`;
               return (
                 <div className="filters-style">
-                  <div className="material-name round-mt">
+                  <div className="data-name round-mt">
                     <input
                       type="checkbox"
                       id={checkboxId}
