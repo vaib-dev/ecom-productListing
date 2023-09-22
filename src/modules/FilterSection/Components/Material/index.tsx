@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSeperatedData } from "hooks/seperateFilterData";
 import { useFilter } from "Context/SelectedFilterContext";
 
-const MaterialCard = ({ data }: any) => {
+const MaterialCard = ({ data, filterName }: any) => {
   const [materialValues, setMaterialValues] = useState<any>([]);
   const [selectedMaterials, setSelectedMaterials] = useState<any>([]);
-  const { materialFilter, setMaterialFilter }: any = useFilter();
   const [toggle, setToggle] = useState<any>(false);
-  const valuesToMap = Array.isArray(materialValues)
-    ? materialValues[0]?.values
-    : [];
   const [displayCount, setDisplayCount] = useState(6);
+  
+  const { materialFilter, setMaterialFilter }: any = useFilter();
 
   useEffect(() => {
     if (data) {
@@ -47,7 +44,7 @@ const MaterialCard = ({ data }: any) => {
   };
 
   const handleShowMore = () => {
-    setDisplayCount(valuesToMap.length);
+    setDisplayCount(materialValues?.length);
   };
 
   const handleShowLess = () => {
@@ -59,12 +56,12 @@ const MaterialCard = ({ data }: any) => {
       {toggle ? (
         <>
           <div className="filter-text">
-            Material
+            {filterName}
             <button className="toogle" onClick={() => handleToggle()}>
               -
             </button>
           </div>
-          {valuesToMap
+          {materialValues
             ?.slice(0, displayCount)
             ?.map((items: any, index: number) => {
               const checkboxId = `checkbox-mt-${index}`;
@@ -92,7 +89,7 @@ const MaterialCard = ({ data }: any) => {
               );
             })}
           <div className="show-more-less">
-            {displayCount === valuesToMap?.length ? (
+            {displayCount === materialValues?.length ? (
               <button className="toogle-list" onClick={handleShowLess}>
                 - Less{" "}
               </button>
@@ -106,7 +103,7 @@ const MaterialCard = ({ data }: any) => {
       ) : (
         <>
           <div className="filter-text">
-            Material
+            {filterName}
             <button className="toogle" onClick={() => handleToggle()}>
               +
             </button>

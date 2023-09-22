@@ -1,11 +1,9 @@
 import MaterialCard from "./Components/Material";
 import ColorCard from "./Components/Color";
 import PriceCard from "./Components/Price";
-import { useSeperatedData } from "hooks/seperateFilterData";
 import { useFilter } from "Context/SelectedFilterContext";
 
 const Filters = () => {
-  const { material, color }: any = useSeperatedData();
   const { filterData }: any = useFilter();
   const filterWithTypeText = filterData?.filter(
     (item: any) => item.type === "text"
@@ -25,7 +23,7 @@ const Filters = () => {
         {filterWithTypeText?.map((item: any) => {
           return (
             <>
-              <MaterialCard data={material} />
+              <MaterialCard data={item?.values} filterName={item?.name} />
             </>
           );
         })}
