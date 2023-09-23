@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useFilter } from "Context/SelectedFilterContext";
+import { CheckBox } from "./Components";
 
-const MaterialCard = ({ data, filterName }: any) => {
-  const [materialValues, setMaterialValues] = useState<any>([]);
+const TextTypeCard = ({ data, filterName }: any) => {
+  const [materialValues, setMaterialValues] = useState<any>(data);
   const [selectedMaterials, setSelectedMaterials] = useState<any>([]);
   const [toggle, setToggle] = useState<any>(false);
   const [displayCount, setDisplayCount] = useState(6);
-  
-  const { materialFilter, setMaterialFilter }: any = useFilter();
 
-  useEffect(() => {
-    if (data) {
-      setMaterialValues(data);
-    } else {
-      setMaterialValues([]);
-    }
-  }, [data?.length]);
+  const { materialFilter, setMaterialFilter }: any = useFilter();
 
   useEffect(() => {
     setMaterialFilter(selectedMaterials);
@@ -53,38 +46,27 @@ const MaterialCard = ({ data, filterName }: any) => {
 
   return (
     <div className="filter-container">
-      {toggle ? (
+      <div className="filter-text">
+        {filterName}
+        <button className="toogle" onClick={() => handleToggle()}>
+          {toggle ? "-" : "+"}
+        </button>
+      </div>
+      {toggle && (
         <>
-          <div className="filter-text">
-            {filterName}
-            <button className="toogle" onClick={() => handleToggle()}>
-              -
-            </button>
-          </div>
           {materialValues
             ?.slice(0, displayCount)
-            ?.map((items: any, index: number) => {
-              const checkboxId = `checkbox-mt-${index}`;
+            ?.map((items: any, index: any) => {
+              const checkboxId = `checkbox-${index}`;
               return (
-                <div className="filters-style">
-                  <div className="data-name round-mt">
-                    <input
-                      type="checkbox"
-                      id={checkboxId}
-                      checked={materialFilter.includes(items.value)}
-                      name={items.value}
-                      onClick={(e) => {
-                        handleMaterialSelection(e);
-                      }}
-                    />
-                    <label
-                      htmlFor={checkboxId}
-                      style={{ backgroundColor: "none" }}
-                    ></label>
-
-                    {items.value}
-                  </div>
-                  <span>({items.count})</span>
+                <div className="filters-style" key={index}>
+                  <CheckBox
+                    checkboxId={checkboxId}
+                    valueCheck={materialFilter.includes(items.value)}
+                    itemName={items?.value}
+                    handleMaterialSelection={handleMaterialSelection}
+                    stockAvailable={items?.count}
+                  />
                 </div>
               );
             })}
@@ -100,18 +82,9 @@ const MaterialCard = ({ data, filterName }: any) => {
             )}
           </div>
         </>
-      ) : (
-        <>
-          <div className="filter-text">
-            {filterName}
-            <button className="toogle" onClick={() => handleToggle()}>
-              +
-            </button>
-          </div>
-        </>
       )}
     </div>
   );
 };
 
-export default MaterialCard;
+export default TextTypeCard;

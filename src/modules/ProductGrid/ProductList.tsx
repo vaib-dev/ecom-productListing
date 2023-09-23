@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFilter } from "Context/SelectedFilterContext";
 import { Image, Price, Sticker, Title } from "./components";
 
-const ProductCard = () => {
+const ProductList = () => {
   const [productList, setProductList] = useState<any>([]);
   const { productData }: any = useFilter();
 
@@ -13,9 +13,9 @@ const ProductCard = () => {
   const renderProductList = () => {
     return (
       <>
-        {productList?.map((items: any) => {
+        {productList?.map((items: any, index: any) => {
           return (
-            <div className="product">
+            <div className="product" key={index}>
               <a href={items?.product_url} target="_blank">
                 <Image url={items?.image_url} title={items?.title} />
                 {items?.compare_at && (
@@ -37,4 +37,4 @@ const ProductCard = () => {
   return <>{productList?.length ? renderProductList() : <>Loading...</>}</>;
 };
 
-export default ProductCard;
+export default ProductList;

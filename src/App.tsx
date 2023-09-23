@@ -1,7 +1,7 @@
-import ProductCard from "./modules/ProductGrid";
+import ProductList from "./modules/ProductGrid/ProductList";
 import Header from "./modules/Header";
 import "./common.css";
-import Filters from "./modules/FilterSection/Filters";
+import FilterList from "./modules/FilterSection/FilterList";
 import Breadcrumbs from "./modules/Breadcrumbs";
 
 function App() {
@@ -15,10 +15,10 @@ function App() {
       </div>
       <div className="page-container">
         <div className="filters">
-          <Filters />
+          <FilterList />
         </div>
         <div className="products">
-          <ProductCard />
+          <ProductList />
         </div>
       </div>
     </>
