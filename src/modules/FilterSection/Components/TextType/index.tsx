@@ -57,7 +57,7 @@ const TextTypeCard = ({ data, filterName }: any) => {
           {materialValues
             ?.slice(0, displayCount)
             ?.map((items: any, index: any) => {
-              const checkboxId = `checkbox-${index}`;
+              const checkboxId = `checkbox-mt-${index}`;
               return (
                 <div className="filters-style" key={index}>
                   <CheckBox

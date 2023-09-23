@@ -50,41 +50,39 @@ const Breadcrumbs = () => {
     <div className="selected-filter">
       {priceFilter?.length > 0 && <> {renderPriceFilter()}/</>}
 
-      {colorFilter?.length > 0 &&
-        colorFilter?.map((item: any) => {
-          return (
-            <>
-              <div
-                className="circle-filter"
-                style={{ backgroundColor: `${item}` }}
-              ></div>
-              <button
-                className="cancel-button"
-                name="color"
-                onClick={(e) => handleRemoveFilter(e, item)}
-              >
-                X
-              </button>
-            </>
-          );
-        })}
+      {colorFilter?.map((item: any) => {
+        return (
+          <>
+            <div
+              className="circle-filter"
+              style={{ backgroundColor: `${item}` }}
+            ></div>
+            <button
+              className="cancel-button"
+              name="color"
+              onClick={(e) => handleRemoveFilter(e, item)}
+            >
+              X
+            </button>
+            /
+          </>
+        );
+      })}
 
-      {colorFilter?.length > 0 && "/"}
-      {materialFilter?.length > 0 &&
-        materialFilter?.map((item: any) => {
-          return (
-            <span className="breadcrumbs-text">
-              {item}
-              <button
-                name="material"
-                className="cancel-button"
-                onClick={(e) => handleRemoveFilter(e, item)}
-              >
-                X
-              </button>
-            </span>
-          );
-        })}
+      {materialFilter?.map((item: any) => {
+        return (
+          <span className="breadcrumbs-text">
+            {item}
+            <button
+              name="material"
+              className="cancel-button"
+              onClick={(e) => handleRemoveFilter(e, item)}
+            >
+              X
+            </button>
+          </span>
+        );
+      })}
     </div>
   );
 };
