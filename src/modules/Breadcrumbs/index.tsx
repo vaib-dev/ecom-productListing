@@ -42,13 +42,14 @@ const Breadcrumbs = () => {
         >
           X
         </button>
+        /
       </div>
     );
   };
 
   return (
     <div className="selected-filter">
-      {priceFilter?.length > 0 && <> {renderPriceFilter()}/</>}
+      {priceFilter?.length > 0 && renderPriceFilter()}
 
       {colorFilter?.map((item: any) => {
         return (

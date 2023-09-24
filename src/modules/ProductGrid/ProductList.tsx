@@ -4,16 +4,34 @@ import { Image, Price, Sticker, Title } from "./components";
 
 const ProductList = () => {
   const [productList, setProductList] = useState<any>([]);
-  const { productData }: any = useFilter();
+  const { productData, priceFilter }: any = useFilter();
+  const [filteredProductList, setFilterProductList] = useState<any>([]);
 
   useEffect(() => {
-    if (productData?.length > 0) setProductList(productData);
+    if (productData?.length > 0) {
+      setProductList(productData);
+      setFilterProductList(productData);
+    }
   }, [productData]);
+
+  useEffect(() => {
+    const minPrice = parseInt(priceFilter[0]);
+    const maxPrice = parseInt(priceFilter[1]);
+    const filteredProducts = productList.filter((product: any) => {
+      const productPrice = product.price[0];
+      return productPrice >= minPrice && productPrice <= maxPrice;
+    });
+    setFilterProductList(filteredProducts);
+
+    if (priceFilter === 0) {
+      setFilterProductList(productList);
+    }
+  }, [priceFilter]);
 
   const renderProductList = () => {
     return (
       <>
-        {productList?.map((items: any, index: any) => {
+        {filteredProductList?.map((items: any, index: any) => {
           return (
             <div className="product" key={index}>
               <a href={items?.product_url} target="_blank">
@@ -34,7 +52,9 @@ const ProductList = () => {
     );
   };
 
-  return <>{productList?.length ? renderProductList() : <>Loading...</>}</>;
+  return (
+    <>{filteredProductList?.length ? renderProductList() : <>Loading...</>}</>
+  );
 };
 
 export default ProductList;
