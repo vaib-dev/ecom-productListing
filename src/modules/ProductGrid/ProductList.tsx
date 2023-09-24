@@ -1,32 +1,19 @@
 import { useEffect, useState } from "react";
 import { useFilter } from "Context/SelectedFilterContext";
 import { Image, Price, Sticker, Title } from "./components";
+import { useFilterProductList } from "hooks/useFilterProductList";
 
 const ProductList = () => {
-  const [productList, setProductList] = useState<any>([]);
   const { productData, priceFilter }: any = useFilter();
-  const [filteredProductList, setFilterProductList] = useState<any>([]);
+  const [productList, setProductList] = useState<any>([]);
 
   useEffect(() => {
     if (productData?.length > 0) {
       setProductList(productData);
-      setFilterProductList(productData);
     }
   }, [productData]);
 
-  useEffect(() => {
-    const minPrice = parseInt(priceFilter[0]);
-    const maxPrice = parseInt(priceFilter[1]);
-    const filteredProducts = productList.filter((product: any) => {
-      const productPrice = product.price[0];
-      return productPrice >= minPrice && productPrice <= maxPrice;
-    });
-    setFilterProductList(filteredProducts);
-
-    if (priceFilter === 0) {
-      setFilterProductList(productList);
-    }
-  }, [priceFilter]);
+  const filteredProductList = useFilterProductList(productList, priceFilter);
 
   const renderProductList = () => {
     return (
